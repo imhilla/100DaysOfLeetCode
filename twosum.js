@@ -53,10 +53,21 @@ var twoSum = function (nums, target) {
 
   for (var i = 0; i < nums.length; i++) {
     remainder = target - nums[i]
-    if (Object.keys(hash).find(key => hash[key] === remainder && key !== i )) {
-      //   arr.push(i)
-      console.log(i)
+    if (Object.keys(hash).find(key => hash[key] === remainder && i !== parseInt(key))) {
+      arr.push(i)
     }
   }
   return arr
+};
+
+// one pass solution
+var twoSum = function (nums, target) {
+  hash = {}
+  for (var i = 0; i < nums.length; i++) {
+    var remainder = target - nums[i]
+    if (Object.keys(hash).find(key => hash[key] === remainder)) {
+      return [Object.keys(hash).find(key => hash[key] === remainder), i]
+    }
+    hash[i] = nums[i]
+  }
 };
